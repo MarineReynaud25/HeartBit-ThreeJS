@@ -1,0 +1,25 @@
+head, body {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    display: block;
+    z-index: 0;
+}
+
+#alert{
+    position: absolute;
+    top: 30%; /* Changer la valeur pour ajuster la position verticale */
+    left: 40%; /* Changer la valeur pour ajuster la position horizontale */
+    color: red;
+    font-family: Arial;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px white;
+    z-index: 100;
+    visibility: hidden;
+    pointer-events: none;
+
+}
