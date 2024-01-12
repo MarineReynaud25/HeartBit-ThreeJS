@@ -4,7 +4,7 @@ This project showcases a web page featuring interactive 3D elements representing
 ## Features
 
 - **User Interaction:** Clicking on the necklace model turns on the decorative heart.
-- **Bidirectional Communication:** When the decorative heart lights up, it sends an alert message to the necklace.
+- **Bidirectional Communication:** When the decorative heart turns on, it sends an alert message to the necklace.
 
 ## Usage
 
