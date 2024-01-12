@@ -56,7 +56,7 @@ window.addEventListener('resize', () => {
 const textureLoader = new THREE.TextureLoader();
 let loaded = false;
 const loading = document.getElementById("loading");
-let textureEquirec = textureLoader.load( 'bedroom3.webp' ,()=>{
+let textureEquirec = textureLoader.load( './assets/bedroom3.webp' ,()=>{
     loaded = true;
     loading.style.visibility = "hidden";
 },
@@ -77,7 +77,7 @@ scene.add(light);
 const loader = new STLLoader();
 let heartMesh2;
 loader.load(
-    'Heart.stl',
+    './assets/Heart.stl',
     (geometry) => {
         const initialMaterial = new THREE.MeshPhysicalMaterial({
             color: 0xff0000,
@@ -111,7 +111,7 @@ let heartInitialPosition;
 let light2 = undefined;
 const loader5 = new STLLoader();
 loader5.load(
-    'Heart.stl',
+    './assets/Heart.stl',
     (geometry) => {
         const initialMaterial = new THREE.MeshStandardMaterial({
             color: 0xff00ff,
@@ -138,9 +138,9 @@ loader5.load(
 
 const loader4 = new STLLoader();
 loader4.load(
-    'support.stl',
+    './assets/support.stl',
     (support) => {
-        var textureLoader = new THREE.TextureLoader().load('./bois.jpg');
+        var textureLoader = new THREE.TextureLoader().load('./assets/bois.jpg');
 
         let geometry = support;
         let material = new THREE.MeshStandardMaterial({
@@ -156,12 +156,12 @@ loader4.load(
 
 const mtlLoader = new MTLLoader();
 var table = undefined;
-mtlLoader.load("./Table.mtl", function(materials)
+mtlLoader.load("./assets/Table.mtl", function(materials)
 {
     materials.preload();
     var objLoader = new OBJLoader();
     objLoader.setMaterials(materials);
-    objLoader.load("./Table.obj", function(object)
+    objLoader.load("./assets/Table.obj", function(object)
     {    
         table = object;
         table.position.set(129.8, -237.9, -271.4);
@@ -172,7 +172,7 @@ mtlLoader.load("./Table.mtl", function(materials)
 
 var loader6 = new FBXLoader();
 loader6.load(
-    'lavalamp.fbx',
+    './assets/lavalamp.fbx',
     function (object) {
         object.position.set(29.5,-37.3,-79.1);
         scene.add(object);
@@ -181,7 +181,7 @@ loader6.load(
 
 var loader3 = new GLTFLoader();
 var sword = undefined;   
-loader3.load( 'marine.glb', function ( gltf )
+loader3.load( './assets/marine.glb', function ( gltf )
 {
     sword = gltf.scene;  
     sword.scale.set(8, 8, 8);
