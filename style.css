@@ -18,8 +18,23 @@ canvas {
     font-weight: bold;
     text-align: center;
     text-shadow: 2px 2px white;
-    z-index: 100;
+    z-index: 50;
     visibility: hidden;
     pointer-events: none;
+    overflow: clip;
 
+}
+
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    color: #000;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 100;
 }

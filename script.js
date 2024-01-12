@@ -14,7 +14,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 
 console.log(THREE);
-const gui = new GUI();
+//const gui = new GUI();
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 15;
@@ -32,7 +32,7 @@ const composer = new EffectComposer(renderer);
 const renderPass = new RenderPass(scene, camera);
 const bloomPass = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    0.3 , // strength
+    0.35 , // strength
     1, // radius
     0.2 // threshold
 );
@@ -54,12 +54,24 @@ window.addEventListener('resize', () => {
 });
 
 const textureLoader = new THREE.TextureLoader();
-let textureEquirec = textureLoader.load( 'bedroom3.webp' );
+let loaded = false;
+const loading = document.getElementById("loading");
+let textureEquirec = textureLoader.load( 'bedroom3.webp' ,()=>{
+    loaded = true;
+    loading.style.visibility = "hidden";
+},
+// function (xhr) {
+//     //if 100% loaded
+//     console.log("Loading state");
+//     console.log((xhr.loaded / xhr.total * 100) + "% loaded");
+
+// }
+);
 textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
 textureEquirec.colorSpace = THREE.SRGBColorSpace;
 scene.background = textureEquirec;
 
-const light = new THREE.AmbientLight(0xffffff, 1.2, 0, 0.01);
+const light = new THREE.AmbientLight(0xffffff, 2, 0, 0.01);
 scene.add(light);
 
 const loader = new STLLoader();
@@ -121,6 +133,7 @@ loader5.load(
         light2.target = heartMesh;
         light2.visible = false;
     },
+    
 );
 
 const loader4 = new STLLoader();
@@ -242,22 +255,25 @@ window.addEventListener('pointerdown', () => {
 let angle = 0
 const animate = () => {
     requestAnimationFrame(animate);
-    //controls.update()
-    //renderer.render(scene, camera);
-    composer.render();
-    angle += 1
-    losange.rotation.set(0,0.05*angle,0);
+    if (loaded){
 
-    if (heartMesh) {
-        // Mouvement de haut en bas limité
-        heartMesh.position.y = heartInitialPosition + Math.sin(Date.now() * 0.001) * 1;
-        // Limiter le mouvement à y +2 et y -2
-        if (heartMesh.position.y > heartInitialPosition + 1) {
-            heartMesh.position.y = heartInitialPosition +1;
-        } else if (heartMesh.position.y < heartInitialPosition - 1) {
-            heartMesh.position.y = heartInitialPosition - 1;
-        } 
+        //controls.update()
+        //renderer.render(scene, camera);
+        composer.render();
+        angle += 1
+        losange.rotation.set(0,0.05*angle,0);
+        
+        if (heartMesh) {
+            // Mouvement de haut en bas limité
+            heartMesh.position.y = heartInitialPosition + Math.sin(Date.now() * 0.001) * 1;
+            // Limiter le mouvement à y +2 et y -2
+            if (heartMesh.position.y > heartInitialPosition + 1) {
+                heartMesh.position.y = heartInitialPosition +1;
+            } else if (heartMesh.position.y < heartInitialPosition - 1) {
+                heartMesh.position.y = heartInitialPosition - 1;
+            } 
+        }
     }
 };
-
-animate();
+    
+    animate();
